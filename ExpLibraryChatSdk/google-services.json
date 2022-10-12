@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815258267423",
+    "project_id": "arteria-272c8",
+    "storage_bucket": "arteria-272c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815258267423:android:e9480d0b2a197c489cca2a",
+        "android_client_info": {
+          "package_name": "com.example.explibrarychatsdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815258267423-irvh2o9pnrrki57gjmg1ugla196274io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfPYqvqSL-aJVc3jCb6qbvXGfuOduSTDU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815258267423-irvh2o9pnrrki57gjmg1ugla196274io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

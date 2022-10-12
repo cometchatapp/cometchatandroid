@@ -1,0 +1,109 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stateListAnimator="@animator/toolbar_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_back_arrow_selected" />
+
+        <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
+            android:id="@+id/iv_chat_avatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/back_action"
+            android:visibility="visible"
+            app:cardCornerRadius="18dp"
+            tools:src="@tools:sample/avatars" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_chat_avatar"
+            android:layout_toStartOf="@+id/toolbar_controls"
+            android:layout_toEndOf="@id/iv_chat_avatar">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="16sp"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:ellipsize="end"
+                android:maxWidth="200dp"
+                android:maxLines="1"
+                android:textSize="12sp"
+                tools:text="online" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/toolbar_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!--            <ImageView-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:padding="8dp"-->
+            <!--                android:clickable="true"-->
+            <!--                android:focusable="true"-->
+            <!--                android:id="@+id/video_call_action"-->
+            <!--                android:tint="@color/colorPrimary"-->
+            <!--                android:src="@drawable/ic_videocall"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"/>-->
+            <!--            <ImageView-->
+            <!--                android:padding="8dp"-->
+            <!--                android:clickable="true"-->
+            <!--                android:focusable="true"-->
+            <!--                android:id="@+id/audio_call_action"-->
+            <!--                android:tint="@color/colorPrimary"-->
+            <!--                android:src="@drawable/ic_audiocall"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"/>-->
+
+
+
+            <ImageView
+                android:id="@+id/info_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_info"
+                android:tint="@color/textColorWhite" />
+
+            <include layout="@layout/layout_toolbar" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

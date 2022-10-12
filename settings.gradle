@@ -1,0 +1,4 @@
+include ':uikit'
+include ':ExpLibraryChatSdk'
+include ':app'
+rootProject.name = "Arteria"

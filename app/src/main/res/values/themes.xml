@@ -1,0 +1,82 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Arteria" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+<!--        <item name="android:windowBackground">@drawable/bg</item>-->
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+
+
+
+<!--    <style name="ArteriaTheme" parent="_Custom.Themes">-->
+<!--        <item name="colorPrimary">@color/primaryColor</item>-->
+<!--        <item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
+<!--        <item name="colorAccent">@color/secondaryDarkColor</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        &lt;!&ndash;         <item name="android:fontFamily">@string/sans_serif_font</item> &ndash;&gt;-->
+<!--        <item name="android:windowBackground">@color/WHITE</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:textViewStyle">@style/RobotoFont</item>-->
+<!--        <item name="android:buttonStyle">@style/RobotoFontButton</item>-->
+<!--        <item name="android:editTextStyle">@style/RobotoFontEditText</item>-->
+<!--        <item name="android:spinnerStyle">@style/RobotoFontSpinner</item>-->
+<!--        <item name="android:textColor">@color/light_black</item>-->
+<!--        <item name="android:windowActivityTransitions">false</item>-->
+<!--        &lt;!&ndash;  specify enter and exit transitions  &ndash;&gt;-->
+<!--    </style>-->
+    <style name="_Custom.Themes" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="buttonStyle">@style/ButtonDefault</item>
+        <item name="editTextStyle">@style/EditTextDefault</item>
+        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextView.SearchView</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="alertDialogTheme">@style/UtilsDialogTheme</item>
+    </style>
+
+    <style name="EditTextDefault" parent="android:Widget.EditText"/>
+    <style name="ButtonDefault" parent="Widget.AppCompat.Button.Colored"/>
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchHintIcon">@null</item>
+    </style>
+    <style name="AutoCompleteTextView.SearchView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColorHint">@color/searchHintColorUikit</item>
+    </style>
+    <style name="UtilsDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- buttons color -->
+        <item name="colorAccent">@color/secondaryDarkColor</item>
+        <item name="android:windowBackground">@color/dialogBoxBackgroundColor</item>
+        <item name="windowFixedWidthMajor">90%</item>
+        <item name="windowFixedWidthMinor">90%</item>
+    </style>
+
+    <style name="RobotoFont" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="RobotoFontButton" parent="android:Widget.Button">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="RobotoFontEditText" parent="android:Widget.Holo.EditText">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:hint">@style/RobotoFont</item>
+    </style>
+    <style name="RobotoFontSpinner" parent="android:Widget.Spinner">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+</resources>

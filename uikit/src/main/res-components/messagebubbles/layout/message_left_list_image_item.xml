@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr">
+        <!-- Delli Added-->
+        <LinearLayout
+            android:id="@+id/ll_unread"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/menu_background_grey"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_un_read_msg"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/cc_rounded_date_button"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="unread messages" />
+        </LinearLayout>
+        <!--Delli Code Ended  and also added text below to text view-->
+        <com.cometchat.pro.uikit.ui_components.shared.cometchatAvatar.CometChatAvatar
+            android:id="@+id/iv_user"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignTop="@id/cv_image_message_container"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            app:corner_radius="12dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_unread"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/iv_user"
+            android:textSize="12sp"
+            tools:text="Iron Man" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image_message_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_user"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@+id/iv_user"
+            app:cardBackgroundColor="@color/message_bubble_grey"
+            app:cardCornerRadius="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/go_img_message"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/textColorWhite"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_defaulf_image" />
+
+                <TextView
+                    android:id="@+id/caption"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/go_img_message"
+                    android:padding="8dp"
+                    android:textColor="@color/primaryTextColor"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sensitive_layout"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/sensitive_desc"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="8dp"
+                    android:tint="@color/textColorWhite"
+                    app:srcCompat="@drawable/ic_hand" />
+
+                <TextView
+                    android:id="@+id/sensitive_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/sensitive_content"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+
+            <ProgressBar
+                android:id="@+id/img_progress_bar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/cc_progress_drawable"
+                android:visibility="gone" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cv_image_message_container"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/cv_image_message_container"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:drawableStart="@drawable/ic_message_read"
+            tools:text="11:00 PM"
+            tools:visibility="visible" />
+
+        <HorizontalScrollView
+            android:id="@+id/reaction_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_image_message_container"
+            android:layout_alignStart="@id/cv_image_message_container"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/reactions_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:singleLine="true" />
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reaction_group"
+            android:layout_alignStart="@+id/cv_image_message_container"
+            android:layout_marginBottom="16dp"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/thread_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:textColor="@color/colorPrimary"
+                tools:text="2 replies" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
