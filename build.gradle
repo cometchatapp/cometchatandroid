@@ -19,11 +19,17 @@ allprojects {
         jcenter()
 
         maven {
+
             url "https://dl.cloudsmith.io/public/cometchat/cometchat-pro-android/maven/"
+        }
+        maven{
+             url "https://jitpack.io"
+            credentials { username authToken }
         }
     }
 }
 
+//04eda0a54970e96023df7b3f4a0396317548c867
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
