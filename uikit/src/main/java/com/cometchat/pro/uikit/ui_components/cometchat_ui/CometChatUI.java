@@ -2,7 +2,9 @@ package com.cometchat.pro.uikit.ui_components.cometchat_ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -132,7 +134,7 @@ public class CometChatUI extends AppCompatActivity implements
 
         EmojiCompat.Config config = new BundledEmojiCompatConfig(getApplicationContext());
         EmojiCompat.init(config);
-
+        resetBadgeCounterNotification();
         activityCometChatUnifiedBinding = DataBindingUtil.setContentView(this, R.layout.activity_cometchat_unified);
         initViewComponent();
         // It performs action on click of user item in CometChatUserListScreen.
@@ -557,5 +559,13 @@ public class CometChatUI extends AppCompatActivity implements
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
+    private void resetBadgeCounterNotification() {
 
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (notificationManager != null) {
+                notificationManager.cancelAll();
+            }
+        }
+    }
 }

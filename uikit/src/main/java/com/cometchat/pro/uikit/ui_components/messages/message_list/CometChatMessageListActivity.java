@@ -1,6 +1,8 @@
 package com.cometchat.pro.uikit.ui_components.messages.message_list;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -64,7 +66,7 @@ public class CometChatMessageListActivity extends AppCompatActivity implements M
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cometchat_message_list);
         activity = this;
-
+        resetBadgeCounterNotification();
         EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
         EmojiCompat.init(config);
 
@@ -154,6 +156,16 @@ public class CometChatMessageListActivity extends AppCompatActivity implements M
     public void handleDialogClose(DialogInterface dialog) {
         ((MessageActionCloseListener)fragment).handleDialogClose(dialog);
         dialog.dismiss();
+    }
+
+    private void resetBadgeCounterNotification() {
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (notificationManager != null) {
+                notificationManager.cancelAll();
+            }
+        }
     }
 
     @VisibleForTesting
