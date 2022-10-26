@@ -152,7 +152,7 @@ public class CometChatUI extends AppCompatActivity implements
             @Override
             public void OnItemClick(Conversation conversation, int position) {
                 if (conversation.getConversationType().equals(CometChatConstants.CONVERSATION_TYPE_GROUP))
-                    startGroupIntent(((Group) conversation.getConversationWith()));
+                    startGroupIntent(((Group) conversation.getConversationWith()),conversation.getUnreadMessageCount());
                 else
                     startUserIntent(((User) conversation.getConversationWith()));
             }
@@ -165,7 +165,7 @@ public class CometChatUI extends AppCompatActivity implements
             public void OnItemClick(Group g, int position) {
                 group = g;
                 if (group.isJoined()) {
-                    startGroupIntent(group);
+                    startGroupIntent(group,0);
                 } else {
                     if (group.getGroupType().equals(CometChatConstants.GROUP_TYPE_PASSWORD)) {
                         View dialogview = getLayoutInflater().inflate(R.layout.cc_dialog, null);
@@ -300,7 +300,7 @@ public class CometChatUI extends AppCompatActivity implements
                                 progressDialog.dismiss();
 
                             if (group != null)
-                                startGroupIntent(group);
+                                startGroupIntent(group,0);
                         }
 
                         @Override
@@ -448,7 +448,7 @@ public class CometChatUI extends AppCompatActivity implements
      * @param group
      * @see CometChatMessageListActivity
      */
-    private void startGroupIntent(Group group) {
+    private void startGroupIntent(Group group,int count) {
         Intent intent = new Intent(CometChatUI.this, CometChatMessageListActivity.class);
         intent.putExtra(UIKitConstants.IntentStrings.GUID, group.getGuid());
         intent.putExtra(UIKitConstants.IntentStrings.AVATAR, group.getIcon());
@@ -459,6 +459,7 @@ public class CometChatUI extends AppCompatActivity implements
         intent.putExtra(UIKitConstants.IntentStrings.MEMBER_COUNT,group.getMembersCount());
         intent.putExtra(UIKitConstants.IntentStrings.GROUP_DESC,group.getDescription());
         intent.putExtra(UIKitConstants.IntentStrings.GROUP_PASSWORD,group.getPassword());
+        intent.putExtra(UIKitConstants.IntentStrings.GROUP_MSG_COUNT,count);
         startActivity(intent);
     }
 

@@ -264,6 +264,9 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
     private String groupOwnerId;
 
     private int memberCount;
+    private int groupMsgCount=0;
+    private int groupMsgCountTemp=0;
+    private int totalMsgCount=0;
 
     private String memberNames;
 
@@ -385,6 +388,8 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             if (type != null && type.equals(CometChatConstants.RECEIVER_TYPE_GROUP)) {
                 Id = getArguments().getString(UIKitConstants.IntentStrings.GUID);
                 memberCount = getArguments().getInt(UIKitConstants.IntentStrings.MEMBER_COUNT);
+                groupMsgCount = getArguments().getInt(UIKitConstants.IntentStrings.GROUP_MSG_COUNT);
+                groupMsgCountTemp = getArguments().getInt(UIKitConstants.IntentStrings.GROUP_MSG_COUNT);
                 groupDesc = getArguments().getString(UIKitConstants.IntentStrings.GROUP_DESC);
                 groupPassword = getArguments().getString(UIKitConstants.IntentStrings.GROUP_PASSWORD);
                 groupType = getArguments().getString(UIKitConstants.IntentStrings.GROUP_TYPE);
@@ -1505,6 +1510,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
      *
      * @see MessagesRequest#fetchPrevious(CometChat.CallbackListener)
      */
+    List<BaseMessage> baseTotalMessages = new ArrayList<>();
     private void fetchMessage() {
         infoAction.setVisibility(GONE);
         if (messagesRequest == null) {
@@ -1531,7 +1537,17 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
 //                List<BaseMessage> filteredMessageList = filterBaseMessages(baseMessages);
 //                initMessageAdapter(filteredMessageList);
                 Log.e(TAG, "onSuccess:fetchMessage " + baseMessages);
+                if(type.equalsIgnoreCase("group")) {
+                    if (groupMsgCountTemp > baseMessages.size()) {
+                        fetchMessage();
+                    }
+                }
                 initMessageAdapter(baseMessages);
+                if(type.equalsIgnoreCase("group")) {
+                    if (groupMsgCountTemp != 0 && groupMsgCountTemp > 0) {
+                        groupMsgCountTemp = groupMsgCountTemp - baseMessages.size();
+                    }
+                }
                 if (baseMessages.size() != 0) {
                     //noMessageText.setVisibility(GONE);
                     //infoAction.setVisibility(GONE);
@@ -1553,7 +1569,7 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             }
         });
     }
-
+    
     private void stopHideShimmer() {
         messageShimmer.stopShimmer();
         messageShimmer.setVisibility(GONE);
@@ -1605,6 +1621,11 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
             //Delli Code Ended
             messageAdapter.notifyDataSetChanged();
         } else {
+            if(type.equalsIgnoreCase("group")) {
+                if (groupMsgCountTemp != 0 && groupMsgCountTemp > 0) {
+                    scrollToBottomUnread(messageList);
+                }
+            }
             messageAdapter.updateList(messageList);
         }
         //messageAdapter.setMemberAll(memberAll);
@@ -2429,18 +2450,40 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
     private void scrollToBottomUnread(List<BaseMessage> messageList) {
         if (messageList != null && messageList.size() > 0) {
             String strContainsReadAt = "";
-            for (int i = 0; i < messageList.size(); i++) {
-                if (messageList.get(i).getReadAt() == 0) {
-                    rvChatListView.scrollToPosition(i);
-                    strContainsReadAt = "X";
-                    messageList.get(i).setUpdatedAt(1234);
-                    break;
+            int unReadMesCountPos = 0;
+            if(groupMsgCountTemp!=0 && groupMsgCountTemp>0) {
+                unReadMesCountPos = messageList.size() - groupMsgCountTemp;
+            }
+            if (type.equalsIgnoreCase("group")) {
+                for (int i = 0; i < messageList.size(); i++) {
+                    if(unReadMesCountPos!=0) {
+                        if ((unReadMesCountPos) == i) {
+                            messageList.get(i).setUpdatedAt(1234);
+                            break;
+                        }
+                    }
+                }
+            }else {
+                for (int i = 0; i < messageList.size(); i++) {
+                    if (messageList.get(i).getReadAt() == 0) {
+                        rvChatListView.scrollToPosition(i);
+                        strContainsReadAt = "X";
+                        messageList.get(i).setUpdatedAt(1234);
+                        break;
+                    }
                 }
             }
-            if (TextUtils.isEmpty(strContainsReadAt)) {
+            if (type.equalsIgnoreCase("group")) {
+                //Sai added the code for unreadmessages
+                if(groupMsgCountTemp!=0 && groupMsgCountTemp>0) {
+                    int unReadMesCount = messageList.size() - groupMsgCountTemp;
+                    rvChatListView.scrollToPosition(unReadMesCount - 1);
+                }else {
+                    rvChatListView.scrollToPosition(messageAdapter.getItemCount() - 1);
+                }
+            }else{
                 rvChatListView.scrollToPosition(messageAdapter.getItemCount() - 1);
             }
-
         }
     }
 

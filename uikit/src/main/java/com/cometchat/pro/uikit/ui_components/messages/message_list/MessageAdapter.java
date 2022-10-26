@@ -499,13 +499,37 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 setDeleteData((DeleteMessageViewHolder) viewHolder, i);
 
                 if (baseMessage.getUpdatedAt() == 1234) {
-                    ((DeleteMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
-                    ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
-                    ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
                 } else {
-                    ((DeleteMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
-                    ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
-                    ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        ((DeleteMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 break;
@@ -567,10 +591,28 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case LEFT_AUDIO_MESSAGE:
             case RIGHT_AUDIO_MESSAGE:
                 setAudioData((AudioMessageViewHolder) viewHolder, i);
+                if (baseMessage.getUpdatedAt() == 1234) {
+                    ((AudioMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
+                    ((AudioMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
+                    ((AudioMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                } else {
+                    ((AudioMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    ((AudioMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
+                    ((AudioMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
+                }
                 break;
             case LEFT_VIDEO_MESSAGE:
             case RIGHT_VIDEO_MESSAGE:
                 setVideoData((VideoMessageViewHolder) viewHolder, i);
+                if (baseMessage.getUpdatedAt() == 1234) {
+                    ((VideoMessageViewHolder) viewHolder).ll_unread.setVisibility(View.VISIBLE);
+                    ((VideoMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.VISIBLE);
+                    ((VideoMessageViewHolder) viewHolder).tv_un_read_msg.setText("Unread Messages");
+                } else {
+                    ((VideoMessageViewHolder) viewHolder).tv_un_read_msg.setText("");
+                    ((VideoMessageViewHolder) viewHolder).ll_unread.setVisibility(View.GONE);
+                    ((VideoMessageViewHolder) viewHolder).tv_un_read_msg.setVisibility(View.GONE);
+                }
                 break;
             case LEFT_FILE_MESSAGE:
                 ((FileMessageViewHolder) viewHolder).ivUser.setVisibility(View.GONE);

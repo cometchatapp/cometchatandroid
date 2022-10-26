@@ -77,6 +77,7 @@ public class UIKitConstants {
         public static final String GROUP_DESC = "group_description";
 
         public static final String GROUP_PASSWORD = "group_password";
+        public static final String GROUP_MSG_COUNT = "GROUP_MSG_COUNT";
 
         public static final String GROUP_TYPE = "group_type";
 

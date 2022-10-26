@@ -146,9 +146,9 @@ public class CometChatConversationList extends Fragment implements TextWatcher, 
 
         conversationShimmer = view.findViewById(R.id.shimmer_layout);
 
-        iv_home = view.findViewById(R.id.iv_home);
-        iv_home.setOnClickListener(view ->
-                ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity())));
+//        iv_home = view.findViewById(R.id.iv_home);
+//        iv_home.setOnClickListener(view ->
+//                ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity())));
 
         checkDarkMode();
 
