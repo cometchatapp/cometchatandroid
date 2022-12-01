@@ -9,11 +9,14 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-            <activity android:name=".LaunchActivity">
+            <activity android:name=".LaunchActivity"
+                android:exported="false">
 
             </activity>
-            <activity android:name=".create_user.CreateUser"></activity>
-        <activity android:name=".WavelabsChatActivity" >
+            <activity android:name=".create_user.CreateUser"
+                android:exported="false"></activity>
+        <activity android:name=".WavelabsChatActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="FCM_PLUGIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
