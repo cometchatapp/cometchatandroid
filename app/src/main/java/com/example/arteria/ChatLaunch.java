@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cometchat.pro.core.CometChat;
 import com.cometchat.pro.uikit.ui_components.cometchat_ui.CometChatUI;
 import com.example.explibrarychatsdk.WavelabsChatActivity;
+import com.example.explibrarychatsdk.callbacks.CallbackInterface;
 
 public class ChatLaunch extends AppCompatActivity {
 
@@ -32,8 +33,7 @@ public class ChatLaunch extends AppCompatActivity {
                     ChatLaunch.this,
                     MainActivity.USER_ID,
                     true,
-                    CometChatUI.class
-            );
+                    CometChatUI.class, null);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -50,7 +50,11 @@ public class ChatLaunch extends AppCompatActivity {
                 ChatLaunch.this,
                 MainActivity.USER_ID,
                 true,
-                CometChatUI.class
-        );
+                CometChatUI.class,
+                new CallbackInterface() {
+                    @Override
+                    public void onCallbackResponse(String onCallbackResponse) {
+                    }
+                });
     }
 }
