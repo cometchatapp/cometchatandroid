@@ -1019,29 +1019,6 @@ public class CometChatMessageList extends Fragment implements View.OnClickListen
         });
     }
 
-    @TargetApi(30)
-    private void checkBackgroundLocationPermissionAPI30(int backgroundLocationRequestCode) {
-        if (Utils.hasPermissions(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION))
-            return;
-        AlertDialog alertDialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.background_location_permission_title)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        requestPermissions(new String[]{
-                                        Manifest.permission.ACCESS_BACKGROUND_LOCATION}
-                                , backgroundLocationRequestCode);
-                    }
-                })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).create();
-        alertDialog.show();
-    }
-
     private void createPollDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context, R.style.MyDialogTheme);
         View view = LayoutInflater.from(context).inflate(R.layout.add_polls_layout, null);
